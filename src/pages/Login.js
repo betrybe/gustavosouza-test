@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router';
 import * as yup from 'yup';
 import logo from '../assets/logo.png';
 import './Login.css';
@@ -8,6 +9,7 @@ function Login() {
   const passwordRef = useRef({ password: '' });
   const [enabledButton, setEnabledButton] = useState(false);
   const minCharactersPassword = 6;
+  const history = useHistory();
 
   const credentialsSchema = yup.object().shape({
     email: yup.string().email().required(),
@@ -25,6 +27,12 @@ function Login() {
 
   function handleSubmit(eventSubmit) {
     eventSubmit.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (email === 'alguem@email.com' && password === '123456') {
+      history.push('/carteira');
+    }
   }
 
   return (

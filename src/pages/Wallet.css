@@ -33,6 +33,7 @@ select {
   font-size: 14px;
   font-weight: bold;
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .table-value {
@@ -46,6 +47,7 @@ select {
   grid-template-areas: ". . . . . . . . .";
   text-align: center;
   align-items: center;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .table-value span {

@@ -1,0 +1,18 @@
+.table-key {
+  align-items: center;
+  background-color: #33383e;
+  display: grid;
+  gap: 0 0;
+  grid-template-areas: ". . . . . . . . .";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 50px;
+  text-align: center;
+  width: 100vw;
+}
+
+.table-key span {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}

@@ -1,0 +1,28 @@
+.header {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: space-between;
+  padding: 12px 40px;
+  width: 100vw;
+}
+
+.header img {
+  height: 100%;
+}
+
+.info-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.info-header strong {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.info-header strong:first-child {
+  margin-right: 50px;
+}

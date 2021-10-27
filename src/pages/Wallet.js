@@ -108,7 +108,9 @@ function Wallet() {
             <span>{MoneyScheme(item.exchangeRates[item.currency].ask)}</span>
             <span>
               {
-                ExchangeCalculation(item.value, item.exchangeRates[item.currency].ask)
+                MoneyScheme(
+                  ExchangeCalculation(item.value, item.exchangeRates[item.currency].ask),
+                )
               }
             </span>
             <span>{item.exchangeRates[item.currency].name.split('/')[1]}</span>

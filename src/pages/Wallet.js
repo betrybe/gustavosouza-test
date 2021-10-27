@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from '../actions';
 import Header from '../components/Header';
@@ -6,14 +6,13 @@ import TableHeader from '../components/TableHeader';
 import PaymentMethod from '../constants/PaymentMethod';
 import Tags from '../constants/tags';
 import api from '../service/api';
+import walletThunk from '../thunk/wallet';
 import ConvertObjectToArray from '../util/ConvertObjectToArray';
 import './Wallet.css';
 
 function Wallet() {
-  const [currencies, setCurrencies] = useState([]);
   const dispatch = useDispatch();
-  const expenses = useSelector((state) => state.wallet.expenses);
-
+  const { expenses, currencies } = useSelector((state) => state.wallet);
   const valueRef = useRef({ value: '' });
   const currencyRef = useRef({ currency: '' });
   const paymentMethodRef = useRef({ paymentMethod: '' });
@@ -26,21 +25,20 @@ function Wallet() {
       const listCurrency = ConvertObjectToArray(response.data).filter((curr) => (
         curr.symbol !== 'USDT'
       ));
-      setCurrencies(listCurrency);
+      dispatch(actions.addCurrency(listCurrency));
     }
     loadCurrency();
-  }, [currencies]);
+  }, [currencies, dispatch]);
 
   function handleSubmit(eventoSubmit) {
     eventoSubmit.preventDefault();
-    const { value } = valueRef.current;
-    const curr = currencyRef.current.value;
-    const method = paymentMethodRef.current.value;
-    const tag = tagRef.current.value;
-    const description = descriptionRef.current.value;
 
-    dispatch(actions.add({
-      value, currency: curr, method, tag, description,
+    dispatch(walletThunk.get({
+      value: valueRef.current.value,
+      currency: currencyRef.current.value,
+      method: paymentMethodRef.current.value,
+      tag: tagRef.current.value,
+      description: descriptionRef.current.value,
     }));
   }
 
@@ -97,7 +95,7 @@ function Wallet() {
             <span>{item.description}</span>
             <span>{item.tag}</span>
             <span>{item.method}</span>
-            <span>{item.value}</span>
+            <span>{Number(item.value).toFixed(2)}</span>
             <span>{item.currency}</span>
             <span>Câmbio utilizado</span>
             <span>Valor convertido</span>

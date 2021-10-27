@@ -1,21 +1,25 @@
 import ACTIONS from '../constants/actions';
 
 const actions = {
-  login: (task) => ({
-    payload: task,
+  login: (payload) => ({
+    payload,
     type: ACTIONS.LOGIN_USER,
   }),
-  add: (task) => ({
-    payload: task,
+  add: (payload) => ({
+    payload,
     type: ACTIONS.EXPENSES_ADD,
   }),
-  remove: (task) => ({
-    payload: task,
+  remove: (payload) => ({
+    payload,
     type: ACTIONS.EXPENSES_REMOVE,
   }),
-  edit: (task) => ({
-    payload: task,
+  edit: (payload) => ({
+    payload,
     type: ACTIONS.EXPENSES_REMOVE,
+  }),
+  addCurrency: (payload) => ({
+    payload,
+    type: ACTIONS.CURRENCY_ADD,
   }),
 };
 

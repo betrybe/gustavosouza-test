@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from '../actions';
+import remove from '../assets/delete.png';
+import edit from '../assets/edit.png';
 import Header from '../components/Header';
 import TableHeader from '../components/TableHeader';
 import PaymentMethod from '../constants/PaymentMethod';
@@ -8,17 +10,18 @@ import Tags from '../constants/tags';
 import api from '../service/api';
 import walletThunk from '../thunk/wallet';
 import ConvertObjectToArray from '../util/ConvertObjectToArray';
+import ExchangeCalculation from '../util/ExchangeCalculation';
+import MoneyScheme from '../util/MoneyScheme';
 import './Wallet.css';
 
 function Wallet() {
   const dispatch = useDispatch();
-  const { expenses, currencies } = useSelector((state) => state.wallet);
+  const { expenses, currencies, countId } = useSelector((state) => state.wallet);
   const valueRef = useRef({ value: '' });
   const currencyRef = useRef({ currency: '' });
   const paymentMethodRef = useRef({ paymentMethod: '' });
   const tagRef = useRef({ tag: '' });
   const descriptionRef = useRef({ description: '' });
-
   useEffect(() => {
     async function loadCurrency() {
       const response = await api.get('/json/all');
@@ -28,18 +31,23 @@ function Wallet() {
       dispatch(actions.addCurrency(listCurrency));
     }
     loadCurrency();
-  }, [currencies, dispatch]);
+  }, [dispatch]);
 
   function handleSubmit(eventoSubmit) {
     eventoSubmit.preventDefault();
 
     dispatch(walletThunk.get({
+      id: countId,
       value: valueRef.current.value,
       currency: currencyRef.current.value,
       method: paymentMethodRef.current.value,
       tag: tagRef.current.value,
       description: descriptionRef.current.value,
     }));
+  }
+
+  function handleDelete(id) {
+    dispatch(actions.remove(id));
   }
 
   return (
@@ -91,16 +99,31 @@ function Wallet() {
 
       {
         expenses.map((item) => (
-          <div className="table-value" key={ item.tag }>
+          <div className="table-value" key={ item.id }>
             <span>{item.description}</span>
             <span>{item.tag}</span>
             <span>{item.method}</span>
-            <span>{Number(item.value).toFixed(2)}</span>
-            <span>{item.currency}</span>
-            <span>Câmbio utilizado</span>
-            <span>Valor convertido</span>
-            <span>Moeda convertida</span>
-            <span>Editar/Excluir</span>
+            <span>{MoneyScheme(item.value, item.currency)}</span>
+            <span>{item.exchangeRates[item.currency].name.split('/')[0]}</span>
+            <span>{MoneyScheme(item.exchangeRates[item.currency].ask)}</span>
+            <span>
+              {
+                ExchangeCalculation(item.value, item.exchangeRates[item.currency].ask)
+              }
+            </span>
+            <span>{item.exchangeRates[item.currency].name.split('/')[1]}</span>
+            <span>
+              <button type="button" data-testid="edit-btn">
+                <img src={ edit } alt="remove" />
+              </button>
+              <button
+                type="button"
+                data-testid="delete-btn"
+                onClick={ () => handleDelete(item.id) }
+              >
+                <img src={ remove } alt="remove" />
+              </button>
+            </span>
           </div>
         ))
       }

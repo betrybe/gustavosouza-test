@@ -7,7 +7,7 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact component={ Login } />
-      <Route path="/carteira" component={ Wallet } />
+      <Route path="/carteira" exact component={ Wallet } />
     </Switch>
   );
 }

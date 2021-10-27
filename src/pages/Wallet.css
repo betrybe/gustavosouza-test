@@ -1,67 +1,74 @@
 .wallet-form {
+  align-items: center;
   background-color: #272c34;
-  width: 100vw;
-  height: 56px;
   display: flex;
   flex-direction: row;
+  height: 56px;
   justify-content: left;
-  align-items: center;
+  width: 100vw;
 }
 
 .wallet-form label {
-  margin-left: 20px;
   color: white;
   font-size: 16px;
+  margin-left: 20px;
 }
 
-.wallet-form input,
-select {
-  height: 32px;
-  border-radius: 4px;
+.wallet-form input {
   border: none;
-  padding: 0 5px;
-  outline: none;
+  border-radius: 4px;
+  height: 32px;
   margin-left: 15px;
+  outline: none;
+  padding: 0 5px;
+}
+
+.wallet-form select {
+  border: none;
+  border-radius: 4px;
+  height: 32px;
+  margin-left: 15px;
+  outline: none;
+  padding: 0 5px;
 }
 
 .wallet-form button {
-  border: 0px;
   background: #0079fc;
-  color: white;
-  padding: 8px 20px;
+  border: 0;
   border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 20px;
+  color: white;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 20px;
+  padding: 8px 20px;
 }
 
 .table-value {
-  background: white;
-  height: 40px;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas: ". . . . . . . . .";
-  text-align: center;
   align-items: center;
+  background: white;
   border-bottom: 1px solid #dfdfdf;
+  display: grid;
+  gap: 0 0;
+  grid-template-areas: ". . . . . . . . .";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 40px;
+  text-align: center;
+  width: 100vw;
 }
 
 .table-value span {
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
   color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 .table-value span button {
+  background-color: rgb(189, 28, 44);
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
-  border-radius: 4px;
-  background-color: rgb(189, 28, 44);
 }
 
 .table-value span button:first-child {
@@ -69,6 +76,6 @@ select {
 }
 
 .table-value span button img {
-  width: 25px;
   height: 25px;
+  width: 25px;
 }

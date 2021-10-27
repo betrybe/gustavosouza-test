@@ -1,19 +1,18 @@
 .table-key {
-  background-color: #33383e;
-  width: 100vw;
-  height: 50px;
   align-items: center;
+  background-color: #33383e;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
+  gap: 0 0;
   grid-template-areas: ". . . . . . . . .";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 50px;
   text-align: center;
+  width: 100vw;
 }
 
 .table-key span {
-  font-size: 14px;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 400;
 }

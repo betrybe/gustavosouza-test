@@ -30,13 +30,13 @@ function Login() {
 
   function handleSubmit(eventSubmit) {
     eventSubmit.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    // const email = emailRef.current.value;
+    // const password = passwordRef.current.value;
 
-    if (email === 'alguem@email.com' && password === '123456') {
-      dispatch(actions.login(emailRef.current.value));
-      history.push('/carteira');
-    }
+    // if (email === 'alguem@alguem.com' && password === '123456') {
+    dispatch(actions.login(emailRef.current.value));
+    history.push('/carteira');
+    // }
   }
 
   return (

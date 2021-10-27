@@ -56,7 +56,7 @@ function Wallet() {
       <form className="wallet-form" onSubmit={ handleSubmit }>
         <label htmlFor="value">
           Valor:
-          <input type="number" id="value" ref={ valueRef } />
+          <input type="number" id="value" ref={ valueRef } data-testid="value-input" />
         </label>
         <label htmlFor="currency">
           Moeda:
